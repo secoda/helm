@@ -53,6 +53,14 @@ terraform apply -var-file="onprem.tfvars"
 - It is configure to automatically pull the latest images on restart.
 - `kubectl rollout restart deployment secoda-web` will redeploy the application with the latest images.
 
+## Destroying the deployment (irreversible)
+
+1. Then run:
+```bash
+terraform destroy -var-file="onprem.tfvars"
+# Type `yes` at the prompt.
+```
+
 # Misc.
 
 ## Hashicorp Cloud

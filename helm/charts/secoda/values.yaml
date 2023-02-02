@@ -92,7 +92,7 @@ global:
   image:
     registry: "secoda"
     pullPolicy: Always
-    tag: "6"
+    tag: "7"
   env: []
   resources: {}
   securityContext:
