@@ -95,6 +95,21 @@ spec:
           {{- with (compact (concat $globals.env $val.env)) }}
              {{- toYaml . | nindent 10 }}
           {{ end }}
+          - name: ES_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ coalesce $datastores.secoda.existing_secret "secoda-keycloak" }}
+                key: ES_HOST
+          - name: ES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ coalesce $datastores.secoda.existing_secret "secoda-keycloak" }}
+                key: ES_USERNAME
+          - name: ES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ coalesce $datastores.secoda.existing_secret "secoda-keycloak" }}
+                key: ES_PASSWORD
           - name: VITE_NEW_AUTH
             value: "true"
           - name: APISERVICE_DATABASE_CONNECTION

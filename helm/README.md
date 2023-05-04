@@ -1,17 +1,22 @@
-# Helm Chart (Enterprise)
+# Helm Chart
 
 ## Disclaimer
 
 ### New customers
 
-This is the most advanced way to install Secoda, and requires the most maintenance. If you are new to Secoda, we recommend you proceed with docker-compose for on-premise. You will need to contact us for your company-specific Docker token.
+This is the most advanced way to install Secoda. Secoda can help with Secoda-specific issues, but we suggest retaining Kubernetes consultants for the expertise to maintain this cluster. If you are new to Secoda or Kubernetes, we recommend you proceed with [docker-compose](https://github.com/secoda/docker-compose) solution.
 
 ## Prerequisites
 
-- This chart requires **Helm 3.0**.
+- You will need to contact us for your company-specific Docker registry token.
 - A PostgreSQL database.
-        - We recommend using an externally managed postgres database with backups enabled (for example, AWS RDS) as persistent volumes are not as reliable.
-        - This chart runs Secoda in a single pod and requires about *4 vCPU* and *16 GB memory*.
+We recommend using an externally managed postgres database with backups enabled (for example, AWS RDS) as persistent volumes are not as reliable.
+The version we suggest is `>= 14`.
+- An Opensearch cluster (single-node is fine).
+We recommend using an externally managed Opensearch cluster with backups enabled (for example, AWS Opensearch) as persistent volumes are not as reliable.
+The version we suggest is `2.6.0`.
+- This chart runs Secoda in a single pod and requires about *4 vCPU* and *16 GB memory*.
+
 
 ## Setup
 
@@ -31,7 +36,7 @@ grant all privileges on database secoda to keycloak;
 
 ## Usage
 
-1.  Run this command `git clone https://github.com/secoda/secoda-helm.git`
+1.  Run this command `git clone https://github.com/secoda/helm.git`
 
 2. Modify the `examples/predefined-secrets.yaml` file. Replace all values that have a comment next to them.
 
@@ -73,13 +78,20 @@ pre-commit install
 
 ## Troubleshooting
 
-Standard commands:
+If testing locally with minikube, you can port-forward the service to your local machine:
+```
+minikube service secoda
+```
+Then connect over `https` on the provided `tunnel` url.
+
+If you are getting the status error `ImagePullBackOff`. It usually has to do with Docker access token issues. Check the following:
+* `imagePullSecrets` must all be in the same namespace as the Pod.
+* Confirm the docker secret has been created: `kubectl get secrets` and `kubectl get secret secoda-dockerhub`
+
+## Cheatsheet
+
         $ kubectl get pods
         $ kubectl describe pods
         $ kubectl describe deployment
         $ kubectl get services
         $ kubectl logs <POD_NAME> api
-
-If you are getting the status error `ImagePullBackOff`. It usually has to do with Docker access token issues. Check the following:
-* `imagePullSecrets` must all be in the same namespace as the Pod.
-* Confirm the docker secret has been created: `kubectl get secrets` and `kubectl get secret secoda-dockerhub`

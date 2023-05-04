@@ -28,9 +28,13 @@ services:
     livenessProbe:
       tcpSocket:
         port: 5007
+      initialDelaySeconds: 300 # 5 minutes to allow for database migrations.
+      timeoutSeconds: 10
     readinessProbe:
       tcpSocket:
         port: 5007
+      initialDelaySeconds: 300 # 5 minutes to allow for database migrations.
+      timeoutSeconds: 10
     securityContext: {}
 
   frontend:
@@ -54,6 +58,8 @@ services:
     livenessProbe:
       tcpSocket:
         port: 5006
+      initialDelaySeconds: 30
+      timeoutSeconds: 5
     readinessProbe:
       tcpSocket:
         port: 5006
