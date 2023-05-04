@@ -29,3 +29,5 @@ secoda.onprem.tfvars
 local.predefined-secrets.yaml
 secoda.public.pem
 secoda.private.pem
+cert.pem
+key.pem
