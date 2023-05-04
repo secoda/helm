@@ -24,6 +24,8 @@ secoda.onprem.tfvars
 
 .terraform
 
-custom.secoda-secrets.yaml
-
 .DS_Store
+
+local.predefined-secrets.yaml
+secoda.public.pem
+secoda.private.pem

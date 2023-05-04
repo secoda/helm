@@ -54,8 +54,9 @@ GKE-specific configurations:
 4.  Now you're all ready to install Secoda:
 
         $ gcloud container clusters get-credentials <CLUSTER> --region <REGION> # If using GKE.
-        $ cd helm/charts
+        $ cd helm/helm/charts
         $ helm install -f secoda/examples/predefined-secrets.yaml secoda ./secoda
+        
 ## Contributing
 
 Install these tools:
