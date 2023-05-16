@@ -1,8 +1,4 @@
-### Security notice
-
-Running this terraform will generate state files with sensitive environment variables. These must not be checked into source control. We encourage using Hashicorp Cloud to store state files.
-
-# Secoda On-Premise (Google Cloud, Terraform)
+# GCP Terraform
 
 ## Initial Steps
 
