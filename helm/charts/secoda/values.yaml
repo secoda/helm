@@ -52,6 +52,10 @@ services:
         containerPort: 80
     resources:
       requests:
+        memory: 1024Mi
+        cpu: 512m
+        ephemeral-storage: 4Gi
+      limits:
         memory: 2048Mi
         cpu: 512m
         ephemeral-storage: 4Gi
@@ -83,9 +87,9 @@ services:
         cpu: 256m
         ephemeral-storage: 4Gi
       limits:
-        memory: 2048Mi
+        memory: 3072Mi
         cpu: 512m
-        ephemeral-storage: 16Gi
+        ephemeral-storage: 4Gi
     livenessProbe:
       tcpSocket:
         port: 6379
